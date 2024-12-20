@@ -179,9 +179,9 @@ const CampaignDashboard = () => {
     },
     {
       id: 'diabetes-complications',
-      name: 'Diabetes Complications Prevention',
-      description: 'Targeted interventions for high-risk diabetes members',
-      activeMembers: 20034, // ~20% of enrolled population
+      name: 'Diabetes Program Enrollment 2025',
+      description: 'Drive enrollment in comprehensive diabetes management and prevention',
+      activeMembers: 100170, // ~100% of enrolled population
       status: 'active',
       lastModified: '2024-03-10'
     },
