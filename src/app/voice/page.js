@@ -2,82 +2,48 @@
 
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
-import { Phone, Battery, Clock, Users } from 'lucide-react';
+import { Phone, Battery, Clock, Users, Brain, HeartPulse } from 'lucide-react';
 
 const VoiceAIDashboard = () => {
-  // Updated sample data
+  // Updated sample data with new campaigns
   const agentData = [
     {
       id: 1,
       name: 'Agent Emma',
-      program: 'Enrollment',
+      program: 'GLP1 Therapy Enrollment',
       status: 'Active',
-      activeFrom: '2024-01-15',
-      callsMade: 125,
-      totalCalls: 150,
-      avgCallLength: '4:32',
-      optInRate: 68,
-      handoffRate: 42,
-      lastActive: '2 minutes ago',
-      cohorts: [
-        'Chronic Disease Management',
-        'Members with Diabetes',
-        'High-Risk Seniors'
-      ]
+      activeFrom: '2024-02-15',
+      callsMade: 45000,
+      totalCalls: 62500,
+      avgCallLength: '4:45',
+      optInRate: 72,
+      handoffRate: 38,
+      lastActive: '1 minute ago',
+      cohorts: ['GLP1 Candidates']
     },
     {
       id: 2,
       name: 'Agent Sarah',
-      program: 'Engagement',
-      status: 'Active',
-      activeFrom: '2024-02-01',
-      callsMade: 98,
-      totalCalls: 120,
-      avgCallLength: '3:45',
-      optInRate: 72,
-      handoffRate: 38,
-      lastActive: '5 minutes ago',
-      cohorts: [
-        'Members with Diabetes',
-        'Medication Non-adherent'
-      ]
-    },
-    {
-      id: 3,
-      name: 'Agent Michael',
-      program: 'Retention',
+      program: 'Diabetes & Mental Health Program',
       status: 'Paused',
       activeFrom: '2024-01-20',
-      callsMade: 85,
-      totalCalls: 100,
+      callsMade: 28048,
+      totalCalls: 165000,
       avgCallLength: '5:15',
-      optInRate: 75,
-      handoffRate: 45,
-      lastActive: '1 hour ago',
-      cohorts: [
-        'High-Risk Seniors',
-        'Recent Hospital Discharge',
-        'Care Gap Alert'
-      ]
+      optInRate: 65,
+      handoffRate: 42,
+      lastActive: '2 hours ago',
+      cohorts: ['Members with diabetes and mental health conditions']
     },
-    {
-      id: 4,
-      name: 'Agent David',
-      program: 'Enrollment',
-      status: 'Active',
-      activeFrom: '2024-02-10',
-      callsMade: 42,
-      totalCalls: 80,
-      avgCallLength: '4:15',
-      optInRate: 70,
-      handoffRate: 35,
-      lastActive: '1 minute ago',
-      cohorts: ['Preventive Care Due']
-    }
   ];
 
   const getStatusColor = (status) => {
-    return status === 'Active' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800';
+    const colors = {
+      'Active': 'bg-green-100 text-green-800',
+      'Paused': 'bg-yellow-100 text-yellow-800',
+      'Completed': 'bg-blue-100 text-blue-800'
+    };
+    return colors[status] || 'bg-gray-100 text-gray-800';
   };
 
   const formatDate = (dateString) => {
@@ -90,9 +56,9 @@ const VoiceAIDashboard = () => {
 
   const getProgramColor = (program) => {
     const colors = {
-      'Enrollment': 'text-blue-600',
-      'Engagement': 'text-purple-600',
-      'Retention': 'text-indigo-600'
+      'GLP1 Therapy Enrollment': 'text-emerald-600',
+      'Mental Health Program': 'text-purple-600',
+      'Hypertension Management': 'text-red-600'
     };
     return colors[program] || 'text-gray-600';
   };
@@ -124,7 +90,7 @@ const VoiceAIDashboard = () => {
           <CardContent className="pt-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-500">Total Calls Made</p>
+                <p className="text-sm text-gray-500">Total Members Reached</p>
                 <p className="text-2xl font-bold">
                   {agentData.reduce((sum, agent) => sum + agent.callsMade, 0).toLocaleString()}
                 </p>
@@ -178,7 +144,7 @@ const VoiceAIDashboard = () => {
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <p className="text-sm text-gray-500">Calls Progress</p>
+                  <p className="text-sm text-gray-500">Members Reached</p>
                   <p className="font-medium">
                     {agent.callsMade.toLocaleString()} / {agent.totalCalls.toLocaleString()}
                   </p>

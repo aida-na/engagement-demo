@@ -1,12 +1,12 @@
 "use client"
 import React, { useState } from 'react';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Plus, Minus, Wand2, Users, Route, Sparkles, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { Plus, Minus, Wand2, Users, Rss, Route, Sparkles, AlertCircle, CheckCircle2, Edit2, ThumbsUp, ThumbsDown, RefreshCw, Mail, MailIcon } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 
 const CampaignDashboard = () => {
@@ -20,63 +20,76 @@ const CampaignDashboard = () => {
     content: ''
   });
 
-  // Add missing state variables
-  const [contentStructure, setContentStructure] = useState([
-    { id: 1, label: 'Subject Line', content: '', enabled: true, required: true, placeholder: 'Enter subject line...' },
-    { id: 2, label: 'Body Content', content: '', enabled: true, required: true, placeholder: 'Enter main content...' }
-  ]);
-  const [writingGuidelines, setWritingGuidelines] = useState([
-    'Use clear, concise language',
-    'Maintain professional tone'
-  ]);
-  const [brandGuidelines, setBrandGuidelines] = useState([
-    'Include company logo',
-    'Use approved color scheme'
-  ]);
-  const [newGuideline, setNewGuideline] = useState('');
-  const [selectedChannels, setSelectedChannels] = useState([]);
-  const [previewMode, setPreviewMode] = useState(false);
+    const [selectedOptionId, setSelectedOptionId] = useState(null);
+    const [editMode, setEditMode] = useState(false);
+  
+    const generatedOptions = {
+      '1': {
+        subject: "Take Control of Your Health: Important Blood Sugar Update",
+        title: "Small Changes Today Can Prevent Diabetes Tomorrow",
+        content: "Your recent health screening showed elevated blood glucose levels, and we care about your long-term health. While this doesn't mean you have diabetes, it's an important early warning sign that lets you take action now.\n\nAt [Company Name], we've seen countless members successfully lower their risk of developing type 2 diabetes through our prevention program. Our data shows that simple lifestyle modifications can reduce your diabetes risk by up to 58%. Early intervention is key to preventing the progression to type 2 diabetes.\n\nYour comprehensive benefits include:\n- Free consultation with a certified diabetes educator\n- Personalized nutrition guidance from registered dietitians\n- Access to our digital prevention tools and tracking app\n- Regular support from your dedicated health coach\n\nThe good news? You're catching this early. Our preventive care program is designed to fit your schedule and lifestyle, with both virtual and in-person options available. Many of our members have brought their blood sugar levels back to normal range within just 6 months of starting our program.",
+        cta: "Schedule your free prevention consultation today"
+      },
+      '2': {
+        subject: "Important: Your Recent Blood Sugar Results",
+        title: "You Have the Power to Prevent Diabetes",
+        content: "We recently received your blood glucose test results, and while they're higher than normal, you have an incredible opportunity right now. You can take steps to prevent type 2 diabetes before it develops, and [Company Name] is here to support you every step of the way.\n\nAs your healthcare partner, we're committed to helping you succeed with proven strategies that fit your lifestyle. Our members who participate in our prevention program are 2.5 times more likely to avoid developing diabetes compared to those who don't, and we're ready to help you achieve similar success.\n\nYour comprehensive preventive care benefits cover:\n- One-on-one coaching with diabetes prevention specialists\n- Customized meal planning and exercise guidance\n- Smart device integration for easy progress tracking\n- Virtual group support sessions with others on the same journey\n\nRemember: elevated blood sugar doesn't have to lead to diabetes. With the right support and early action, you can take control of your health destiny. Our team of specialists is ready to create a personalized plan that works for you.",
+        cta: "Join our diabetes prevention program now"
+      }
+    };
+  
+    const handleOptionSelect = (optionId) => {
+      setSelectedOptionId(optionId);
+    };
 
   // Add missing cohort options
   const cohortOptions = [
     {
       id: 1,
-      name: "High-Risk Patients",
-      description: "Patients with multiple chronic conditions or recent hospitalizations",
-      size: 2456,
+      name: "Prediabetes Risk",
+      description: "Members with elevated blood glucose levels not yet diagnosed with diabetes",
+      size: 450000,
+      enrollmentRate: 4.2,
+      enrollmentPotential: 52088,
       engagement: "Medium",
       success_rate: "76%",
-      tags: ["Priority", "High Impact"],
+      tags: ["Priority", "Early Intervention"],
       aiRecommended: true
     },
     {
       id: 2,
-      name: "Medication Non-Adherent",
-      description: "Patients who have missed medication refills in the last 3 months",
-      size: 1823,
+      name: "Unmanaged A1C",
+      description: "Diagnosed members with A1C > 8.0% in past 6 months",
+      size: 180000,
+      enrollmentRate: 6.5,
+      enrollmentPotential: 64109,
       engagement: "Low",
       success_rate: "82%",
-      tags: ["Urgent", "Care Gap"],
+      tags: ["Urgent", "Care Gap", "High Risk"],
       aiRecommended: true
     },
     {
       id: 3,
-      name: "Preventive Care Due",
-      description: "Patients overdue for routine screenings or vaccinations",
-      size: 3254,
+      name: "Rural Markets",
+      description: "Members in rural areas with limited access to in-person care",
+      size: 320000,
+      enrollmentRate: 3.8,
+      enrollmentPotential: 48082,
       engagement: "High",
       success_rate: "68%",
-      tags: ["Preventive", "Routine"],
+      tags: ["Access Barriers", "Telehealth Priority"],
       aiRecommended: false
     },
     {
       id: 4,
-      name: "Recent Discharge",
-      description: "Patients discharged from hospital in the last 30 days",
-      size: 892,
+      name: "SDOH Challenges",
+      description: "Members with food access or mobility barriers",
+      size: 280000,
+      enrollmentRate: 3.5,
+      enrollmentPotential: 44075,
       engagement: "High",
       success_rate: "91%",
-      tags: ["Follow-up", "Critical"],
+      tags: ["Social Support", "Critical"],
       aiRecommended: true
     }
   ];
@@ -126,60 +139,60 @@ const CampaignDashboard = () => {
   // Keep existing campaign goals and journey data...
   const campaignGoals = [
     {
-      id: 'enroll',
-      title: 'Plan Enrollment',
-      description: 'Drive enrollment in new healthcare plans or programs'
+      id: 'diabetes-enroll',
+      title: 'Diabetes Program Enrollment',
+      description: 'Drive enrollment in comprehensive diabetes management and prevention programs for at-risk and diagnosed members'
     },
     {
-      id: 'engage',
-      title: 'Program Engagement',
-      description: 'Increase participation in health initiatives and campaigns'
+      id: 'diabetes-engage',
+      title: 'Diabetes Care Engagement',
+      description: 'Increase active participation in blood glucose monitoring, medication adherence, and regular check-ups'
     },
     {
-      id: 'retain',
-      title: 'Member Retention',
-      description: 'Maintain and strengthen existing member relationships'
+      id: 'diabetes-retain',
+      title: 'Diabetes Program Retention',
+      description: 'Strengthen long-term participation in diabetes care programs through personalized support and continuous care'
     },
     {
-      id: 'educate',
-      title: 'Health Education',
-      description: 'Promote health literacy and preventive care awareness'
+      id: 'diabetes-educate',
+      title: 'Diabetes Health Education',
+      description: 'Promote diabetes self-management skills and preventive care awareness through targeted education'
     }
   ];
 
   const existingJourneys = [
     {
-      id: 'onboarding-2024',
-      name: 'Member Onboarding 2024',
-      description: 'Active welcome series for new enrollees',
-      activeMembers: 2430,
+      id: 'diabetes-onboarding-2024',
+      name: 'Diabetes Care Onboarding 2025',
+      description: 'Active welcome series for newly identified diabetes members',
+      activeMembers: 15025, // ~15% of enrolled population
       status: 'active',
       lastModified: '2024-03-15'
     },
     {
-      id: 'wellness-q1',
-      name: 'Annual Enrollment period',
-      description: 'Quarterly wellness engagement campaign',
-      activeMembers: 75030,
+      id: 'diabetes-management-q1',
+      name: 'Diabetes Management Program',
+      description: 'Comprehensive diabetes care and monitoring program',
+      activeMembers: 60102, // ~60% of enrolled population
       status: 'active',
       lastModified: '2024-02-28'
     },
     {
-      id: 'diabetes-care',
-      name: 'Diabetes Management',
-      description: 'Ongoing support for diabetes care',
-      activeMembers: 1256,
+      id: 'diabetes-complications',
+      name: 'Diabetes Complications Prevention',
+      description: 'Targeted interventions for high-risk diabetes members',
+      activeMembers: 20034, // ~20% of enrolled population
       status: 'active',
       lastModified: '2024-03-10'
     },
     {
-      id: 'annual-wellness',
-      name: 'Annual Wellness Visit',
-      description: 'Preventive care appointment reminders',
-      activeMembers: 5632,
+      id: 'diabetes-wellness',
+      name: 'Diabetes Annual Checkup',
+      description: 'Regular diabetes care appointment and A1C testing reminders',
+      activeMembers: 5009, // ~5% of enrolled population
       status: 'active',
       lastModified: '2024-01-15'
-    }
+    }  
   ];
 
   const channelOptions = [
@@ -189,7 +202,7 @@ const CampaignDashboard = () => {
       description: 'Best for detailed information and educational content',
       metrics: { openRate: '24%', responseRate: '12%' },
       cost: 'Low',
-      recommendedTime: 'Morning (9-11 AM)'
+      recommendedTime: 'SFMC Integration'
     },
     {
       id: 'sms',
@@ -197,7 +210,7 @@ const CampaignDashboard = () => {
       description: 'Ideal for urgent reminders and quick updates',
       metrics: { openRate: '98%', responseRate: '45%' },
       cost: 'Medium',
-      recommendedTime: 'Any time (8 AM-8 PM)'
+      recommendedTime: 'Twilio'
     },
     {
       id: 'voice',
@@ -205,7 +218,7 @@ const CampaignDashboard = () => {
       description: 'Perfect for complex communications requiring interaction',
       metrics: { answerRate: '65%', completionRate: '58%' },
       cost: 'High',
-      recommendedTime: 'Afternoon (2-5 PM)'
+      recommendedTime: 'Twilio'
     },
     {
       id: 'mail',
@@ -216,13 +229,17 @@ const CampaignDashboard = () => {
       recommendedTime: 'N/A'
     }
   ];
-  
+  const [selectedChannels, setSelectedChannels] = useState([channelOptions[0].id]);
+
   const toggleChannel = (channelId) => {
-    setSelectedChannels(prev => 
-      prev.includes(channelId)
+    setSelectedChannels(prev => {
+      if (prev.length === 1 && prev.includes(channelId)) {
+        return prev;
+      }
+      return prev.includes(channelId) 
         ? prev.filter(id => id !== channelId)
-        : [...prev, channelId]
-    );
+        : [...prev, channelId];
+    });
   };
 
   const toggleCohort = (cohortId) => {
@@ -253,77 +270,79 @@ const CampaignDashboard = () => {
     switch (step) {
       case 1:
         return (
-          <div className="space-y-6">
-                  <Tabs defaultValue="new" className="w-full" onValueChange={(value) => setCampaignData(prev => ({ ...prev, type: value }))}>
-                    <TabsList className="grid w-full grid-cols-2 mb-6">
-                     <TabsTrigger value="existing">SFMC Journey</TabsTrigger>
-                      <TabsTrigger value="new">New Campaign</TabsTrigger>
-                    </TabsList>
-                    
-                    <TabsContent value="new">
-                      <div className="space-y-4 pt-2">
-                        <Label className="text-lg font-semibold">Campaign Goal</Label>
-                        <div className="grid grid-cols-2 gap-4">
-                          {campaignGoals.map((goal) => (
-                            <div 
-                              key={goal.id}
-                              className={`p-4 border rounded-lg hover:border-blue-500 cursor-pointer
-                                ${campaignData.goal === goal.id ? 'border-blue-500 bg-blue-50' : ''}`}
-                              onClick={() => setCampaignData(prev => ({ ...prev, goal: goal.id }))}
-                            >
-                              <div className="font-medium mb-2">{goal.title}</div>
-                              <p className="text-sm text-gray-500">{goal.description}</p>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </TabsContent>
-                    
-                    <TabsContent value="existing">
-                      <div className="space-y-4 pt-2">
-                        <div className="flex items-center gap-2 mb-4">
-                          <Route className="w-5 h-5 text-blue-600" />
-                          <Label className="text-lg font-semibold">Select Existing Journey</Label>
-                        </div>
-                        <Alert className="bg-blue-50 border-blue-200">
-                          <Sparkles className="w-4 h-4 text-blue-500" />
-                          <AlertDescription>
-                            Connect your campaign to an active journey to enhance existing member communications
-                          </AlertDescription>
-                        </Alert>
-                        <div className="grid grid-cols-2 gap-4">
-                          {existingJourneys.map((journey) => (
-                            <div
-                              key={journey.id}
-                              className={`p-4 border rounded-lg hover:border-blue-500 cursor-pointer
-                                ${campaignData.journey === journey.id ? 'border-blue-500 bg-blue-50' : ''}`}
-                              onClick={() => setCampaignData(prev => ({ ...prev, journey: journey.id }))}
-                            >
-                              <div className="font-medium mb-2">{journey.name}</div>
-                              <p className="text-sm text-gray-500 mb-2">{journey.description}</p>
-                              <div className="flex justify-between text-sm">
-                                <span className="text-blue-600">Active Members: {journey.activeMembers.toLocaleString()}</span>
-                                <span className="text-gray-500">Modified: {new Date(journey.lastModified).toLocaleDateString()}</span>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </TabsContent>
-                  </Tabs>
+          <div className="flex justify-center w-full max-w-4xl mx-auto px-4">
+          <Tabs 
+            defaultValue="existing" 
+            className="w-full"
+            onValueChange={(value) => setCampaignData(prev => ({ ...prev, type: value }))}
+          >
+            <TabsList className="grid w-full grid-cols-2 mb-6">
+              <TabsTrigger value="existing">Existing Campaign</TabsTrigger>
+              <TabsTrigger value="new">New Campaign</TabsTrigger>
+            </TabsList>
+            
+            <TabsContent value="existing">
+              <div className="space-y-4 pt-2">
+             <Alert className="bg-blue-50 border-blue-200">
+             <div className="flex items-center gap-3">
+              <Sparkles className="w-4 h-4 text-blue-500" />
+              <AlertDescription className="flex-1">
+              Connect your campaign to an active journey to enhance existing member communications
+             </AlertDescription>
+          </div>
+        </Alert>
+        <div className="grid grid-cols-2 gap-4">
+          {existingJourneys.map((journey) => (
+            <div
+              key={journey.id}
+              className={`p-4 border rounded-lg hover:border-blue-500 cursor-pointer
+                ${campaignData.journey === journey.id ? 'border-blue-500 bg-blue-50' : ''}`}
+              onClick={() => setCampaignData(prev => ({ ...prev, journey: journey.id }))}
+            >
+              <div className="font-medium mb-2">{journey.name}</div>
+              <p className="text-sm text-gray-500 mb-2">{journey.description}</p>
+              <div className="flex justify-between text-sm">
+                <span className="text-blue-600">Active Members: {journey.activeMembers.toLocaleString()}</span>
+                <span className="text-gray-500">Modified: {new Date(journey.lastModified).toLocaleDateString()}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </TabsContent>
+    
+            <TabsContent value="new">
+              <div className="space-y-4 pt-2">
+                <Label className="text-lg font-semibold">Campaign Goal</Label>
+                <div className="grid grid-cols-2 gap-4">
+                  {campaignGoals.map((goal) => (
+                    <div
+                      key={goal.id}
+                      className={`p-4 border rounded-lg hover:border-blue-500 cursor-pointer
+                        ${campaignData.goal === goal.id ? 'border-blue-500 bg-blue-50' : ''}`}
+                      onClick={() => setCampaignData(prev => ({ ...prev, goal: goal.id }))}
+                    >
+                      <div className="font-medium mb-2">{goal.title}</div>
+                      <p className="text-sm text-gray-500">{goal.description}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </TabsContent>
+          </Tabs>
                   </div>
         );
       case 2:
         return (
           <div className="space-y-6">
             <div className="flex items-center gap-2 mb-4">
-              <Users className="w-5 h-5 text-blue-600" />
+              <Users class Name="w-5 h-5 text-blue-600" />
               <h2 className="text-lg font-semibold">Select Target Cohorts</h2>
             </div>
             <Alert className="bg-blue-50 border-blue-200">
               <Sparkles className="w-4 h-4 text-blue-500" />
               <AlertDescription>
-                Based on your selected goal, we've highlighted recommended cohorts.
+                Based on your selected goal, we've highlighted recommended cohorts
               </AlertDescription>
             </Alert>
             <div className="grid grid-cols-2 gap-4">
@@ -343,7 +362,6 @@ const CampaignDashboard = () => {
                   </div>
                   <div className="flex gap-2 text-sm">
                     <span>Size: {cohort.size}</span>
-                    <span>Success Rate: {cohort.success_rate}</span>
                   </div>
                 </div>
               ))}
@@ -355,11 +373,17 @@ const CampaignDashboard = () => {
         return (
          <div className="space-y-6">
               <div className="flex justify-between items-center">
-                <Label className="text-lg font-semibold">Communication Channels</Label>
-                <span className="text-sm text-gray-500">
-                  Selected: {selectedChannels.length}
-                </span>
+                <div className="flex items-center gap-2 mb-4">
+                  <Rss class Name="w-5 h-5 text-blue-600" />
+                  <h2 className="text-lg font-semibold">Communication Channels</h2>
+                  </div>
               </div>
+              <Alert className="bg-blue-50 border-blue-200">
+              <Sparkles className="w-4 h-4 text-blue-500" />
+              <AlertDescription>
+                Channel is selected based on your connected existing journey
+              </AlertDescription>
+              </Alert>
               <div className="grid grid-cols-2 gap-4">
                 {channelOptions.map((channel) => (
                   <div
@@ -371,7 +395,7 @@ const CampaignDashboard = () => {
                     <h3 className="font-medium">{channel.name}</h3>
                     <p className="text-sm text-gray-600 mt-1">{channel.description}</p>
                     <div className="mt-2 text-sm text-gray-500">
-                      Best Time: {channel.recommendedTime}
+                      Connection: {channel.recommendedTime}
                     </div>
                   </div>
                 ))}
@@ -379,177 +403,135 @@ const CampaignDashboard = () => {
             </div>
         );
       case 4:
-        return (
-          <div className="space-y-6">
-          <div className="space-y-4">
-            <h3 className="text-lg font-medium">Content Structure</h3>
-            <div className="space-y-4">
-              {contentStructure.map((item) => (
-                <div key={item.id} className="space-y-2 border-l-2 border-gray-200 pl-4">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-2">
-                      <input 
-                        type="checkbox" 
-                        checked={item.enabled}
-                        onChange={(e) => handleStructureChange(item.id, 'enabled', e.target.checked)}
-                        className="h-4 w-4"
-                        disabled={item.required}
-                      />
-                      <Input
-                        value={item.label}
-                        onChange={(e) => handleStructureChange(item.id, 'label', e.target.value)}
-                        className="w-48"
-                      />
-                    </div>
-                    {!item.required && (
-                      <Button 
-                        variant="ghost" 
-                        size="sm"
-                        onClick={() => setContentStructure(contentStructure.filter(i => i.id !== item.id))}
-                      >
-                        <Minus className="h-4 w-4" />
-                      </Button>
-                    )}
+        case 4:
+          return (
+            <div className="max-w-4xl mx-auto space-y-6">
+              <div className="flex justify-between items-center">
+              <div className="flex items-center gap-2 mb-4">
+                  <MailIcon class Name="w-5 h-5 text-blue-600" />
+                  <h2 className="text-lg font-semibold">Generated Email Options</h2>
                   </div>
-                  {item.enabled && (
-                    <Textarea
-                      value={item.content}
-                      onChange={(e) => handleStructureChange(item.id, 'content', e.target.value)}
-                      placeholder={item.placeholder}
-                      className="w-full h-32"
-                    />
-                  )}
+                <div className="space-x-2">
+                  <Button>
+                    <RefreshCw className="h-4 w-4 mr-2" />
+                    Generate More
+                  </Button>
+                </div>
+              </div>
+  
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {Object.entries(generatedOptions).map(([key, option]) => (
+                  <Card 
+                    key={key}
+                    className={`relative ${selectedOptionId === key ? 'ring-2 ring-blue-500' : ''}`}
+                  >
+                    <CardHeader>
+                      <CardTitle className="text-lg">Option {key}</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <div className="space-y-2">
+                        <div className="font-medium text-gray-500">Subject:</div>
+                        <div>{option.subject}</div>
+                      </div>
+                      <div className="space-y-2">
+                        <div className="font-medium text-gray-500">Title:</div>
+                        <div className="text-lg font-semibold">{option.title}</div>
+                      </div>
+                      <div className="space-y-2">
+                        <div className="font-medium text-gray-500">Content:</div>
+                        <div className="whitespace-pre-wrap">{option.content}</div>
+                      </div>
+                      <div className="space-y-2">
+                        <div className="font-medium text-gray-500">CTA:</div>
+                        <div className="text-blue-600">{option.cta}</div>
+                      </div>
+                    </CardContent>
+                    <CardFooter className="justify-between">
+                      <div className="flex space-x-2">
+                        <Button 
+                          variant="outline" 
+                          size="sm"
+                          onClick={() => handleOptionSelect(key)}
+                        >
+                          Select
+                        </Button>
+                        <Button 
+                          variant="ghost" 
+                          size="sm"
+                          onClick={() => setEditMode(true)}
+                        >
+                          <Edit2 className="h-4 w-4" />
+                        </Button>
+                      </div>
+                      <div className="flex space-x-2">
+                        <Button variant="ghost" size="sm">
+                          <ThumbsUp className="h-4 w-4" />
+                        </Button>
+                        <Button variant="ghost" size="sm">
+                          <ThumbsDown className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </CardFooter>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          );
+      }
+    };
+  
+    return (
+      <div className="min-h-screen p-8">
+        <div className="max-w-5xl mx-auto">
+          <div className="mb-8 flex justify-center">
+            <div className="flex gap-8">
+              {steps.map((s) => (
+                <div
+                  key={s.number}
+                  className={`flex items-center gap-2 cursor-pointer ${
+                    step >= s.number ? 'text-blue-600' : 'text-gray-400'
+                  }`}
+                  onClick={() => setStep(s.number)}
+                >
+                  <div 
+                    className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                      step >= s.number ? 'bg-blue-600 text-white' : 'bg-gray-200'
+                    }`}
+                  >
+                    {step > s.number ? <CheckCircle2 className="w-5 h-5" /> : s.number}
+                  </div>
+                  <span className="font-medium">{s.title}</span>
                 </div>
               ))}
-              <Button variant="outline" onClick={handleAddStructureItem} className="mt-4">
-                <Plus className="h-4 w-4 mr-2" />
-                Add Section
-              </Button>
             </div>
           </div>
-
-          <div className="space-y-4">
-            <h3 className="text-lg font-medium">Guidelines</h3>
-            <Tabs defaultValue="writing">
-              <TabsList>
-                <TabsTrigger value="writing">Writing Guidelines</TabsTrigger>
-                <TabsTrigger value="brand">Brand Guidelines</TabsTrigger>
-              </TabsList>
-              
-              <TabsContent value="writing" className="space-y-4">
-                {writingGuidelines.map((guideline, index) => (
-                  <div key={index} className="flex items-center space-x-2">
-                    <span className="flex-1">{guideline}</span>
-                    <Button 
-                      variant="ghost" 
-                      size="sm"
-                      onClick={() => handleGuidelineRemove('writing', index)}
-                    >
-                      <Minus className="h-4 w-4" />
-                    </Button>
-                  </div>
-                ))}
-                <div className="flex space-x-2">
-                  <Input
-                    value={newGuideline}
-                    onChange={(e) => setNewGuideline(e.target.value)}
-                    placeholder="Add new writing guideline"
-                    className="flex-1"
-                  />
-                  <Button onClick={() => handleGuidelineAdd('writing')}>
-                    <Plus className="h-4 w-4 mr-2" />
-                    Add
-                  </Button>
-                </div>
-              </TabsContent>
-              
-              <TabsContent value="brand" className="space-y-4">
-                {brandGuidelines.map((guideline, index) => (
-                  <div key={index} className="flex items-center space-x-2">
-                    <span className="flex-1">{guideline}</span>
-                    <Button 
-                      variant="ghost" 
-                      size="sm"
-                      onClick={() => handleGuidelineRemove('brand', index)}
-                    >
-                      <Minus className="h-4 w-4" />
-                    </Button>
-                  </div>
-                ))}
-                <div className="flex space-x-2">
-                  <Input
-                    value={newGuideline}
-                    onChange={(e) => setNewGuideline(e.target.value)}
-                    placeholder="Add new brand guideline"
-                    className="flex-1"
-                  />
-                  <Button onClick={() => handleGuidelineAdd('brand')}>
-                    <Plus className="h-4 w-4 mr-2" />
-                    Add
-                  </Button>
-                </div>
-              </TabsContent>
-            </Tabs>
-          </div>
-
-          <div className="flex justify-end">
-            <Button className="w-full sm:w-auto">
-              <Wand2 className="h-4 w-4 mr-2" />
-              Generate Content
-            </Button>
-          </div>
-        </div>
-        );
-      default:
-        return null;
-    }
-  };
-
-  return (
-    <div className="min-h-screen bg-gray-50 p-8">
-      <div className="max-w-5xl mx-auto">
-        <div className="mb-8 flex justify-between items-center">
-          <div className="flex gap-4">
-            {steps.map((s) => (
-              <div
-                key={s.number}
-                className={`flex items-center gap-2 cursor-pointer ${step >= s.number ? 'text-blue-600' : 'text-gray-400'}`}
-                onClick={() => setStep(s.number)}
-              >
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center ${step >= s.number ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}>
-                  {step > s.number ? <CheckCircle2 className="w-5 h-5" /> : s.number}
-                </div>
-                <span>{s.title}</span>
+  
+          <Card className="w-full">
+            <CardHeader>
+              <CardTitle>Create Smart Cohort Campaign</CardTitle>
+            </CardHeader>
+            <CardContent>
+              {renderStepContent()}
+              <div className="flex justify-between mt-8">
+                <Button
+                  variant="default"
+                  onClick={() => setStep(prev => Math.max(prev - 1, 1))}
+                  disabled={step === 1}
+                >
+                  Previous
+                </Button>
+                <Button 
+                  variant="default"
+                  onClick={handleNext}
+                >
+                  {step === steps.length ? 'Export to Marketing Cloud' : 'Next'}
+                </Button>
               </div>
-            ))}
-          </div>
+            </CardContent>
+          </Card>
         </div>
-
-        <Card className="w-full">
-          <CardHeader>
-            <CardTitle>Create AI Campaign</CardTitle>
-          </CardHeader>
-          <CardContent>
-            {renderStepContent()}
-            <div className="flex justify-between mt-8">
-              <Button
-                variant="default"
-                onClick={() => setStep(prev => Math.max(prev - 1, 1))}
-                disabled={step === 1}
-              >
-                Previous
-              </Button>
-              <Button 
-              variant="default"
-              onClick={handleNext} >
-                {step === steps.length ? 'Export to Marketing Cloud' : 'Next'}
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
       </div>
-    </div>
-  );
-};
-
-export default CampaignDashboard;
+    );
+  };
+  
+  export default CampaignDashboard;
