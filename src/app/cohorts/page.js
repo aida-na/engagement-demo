@@ -63,7 +63,11 @@ const CohortCard = ({ cohort, onSelect, selected }) => {
               <div className="flex items-center">
                 {cohort.icon}
                 <div className="flex flex-col">
-                  <span className="font-medium">{cohort.name}</span>
+                {cohort.name === "Prediabetes Risk" ? (
+            <a href="/insights" className="font-medium hover:text-blue-600 hover:underline">{cohort.name}</a>
+            ) : (
+            <span className="font-medium">{cohort.name}</span>
+             )}
                   <span className="text-sm text-gray-500">{cohort.description}</span>
                 </div>
               </div>
