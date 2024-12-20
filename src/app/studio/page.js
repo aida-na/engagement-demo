@@ -381,7 +381,7 @@ const CampaignDashboard = () => {
               <Alert className="bg-blue-50 border-blue-200">
               <Sparkles className="w-4 h-4 text-blue-500" />
               <AlertDescription>
-                Channel is selected based on your connected existing journey
+                Channel is selected based on your connected journey
               </AlertDescription>
               </Alert>
               <div className="grid grid-cols-2 gap-4">
