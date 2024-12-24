@@ -11,6 +11,26 @@
       "static/chunks/main-app.js",
       "static/chunks/app/page.js"
     ],
+    "/cohorts/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/cohorts/page.js"
+    ],
+    "/studio/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/studio/page.js"
+    ],
+    "/content/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/content/page.js"
+    ],
+    "/voice/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/voice/page.js"
+    ],
     "/integrations/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -20,36 +40,6 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/settings/page.js"
-    ],
-    "/voice/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/voice/page.js"
-    ],
-    "/content/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/content/page.js"
-    ],
-    "/cohorts/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/cohorts/page.js"
-    ],
-    "/builder/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/builder/page.js"
-    ],
-    "/studio/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/studio/page.js"
-    ],
-    "/draft/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/draft/page.js"
     ]
   }
 }

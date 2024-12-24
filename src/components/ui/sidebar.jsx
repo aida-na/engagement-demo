@@ -24,10 +24,9 @@ const Sidebar = () => {
 
   const menuItems = [
     { id: 'main', href: '/', icon: Home, label: 'Main' },
-    { id: 'cohorts', href: '/cohorts', icon: Users, label: 'Smart Audiences' },
-    { id: 'builder', href: '/builder', icon: Bolt, label: 'Audience Builder' },
-    { id: 'studio', href: '/studio', icon: Blocks, label: 'AI Campaign Builder' },
-    { id: 'content', href: '/content', icon: FileText, label: 'Content Generator' },
+    { id: 'cohorts', href: '/cohorts', icon: Users, label: 'Smart Cohorts' },
+    { id: 'studio', href: '/studio', icon: Blocks, label: 'AI Campaign Studio' },
+    { id: 'content', href: '/content', icon: FileText, label: 'Content Creator' },
     { id: 'voice', href: '/voice', icon: Mic, label: 'Voice AI Agents' },
     { id: 'integrations', href: '/integrations', icon: Cable, label: 'Integrations' },
     { id: 'settings', href: '/settings', icon: Settings, label: 'Settings' },

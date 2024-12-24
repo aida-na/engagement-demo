@@ -1,7 +1,7 @@
 {
-  "/builder/page": "app/builder/page.js",
   "/cohorts/page": "app/cohorts/page.js",
-  "/page": "app/page.js",
-  "/content/page": "app/content/page.js",
-  "/draft/page": "app/draft/page.js"
+  "/integrations/page": "app/integrations/page.js",
+  "/settings/page": "app/settings/page.js",
+  "/voice/page": "app/voice/page.js",
+  "/page": "app/page.js"
 }
