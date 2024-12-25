@@ -52,7 +52,6 @@ const CampaignDashboard = () => {
       enrollmentRate: 4.2,
       enrollmentPotential: 52088,
       engagement: "Medium",
-      success_rate: "76%",
       tags: ["Priority", "Early Intervention"],
       aiRecommended: true
     },
@@ -76,7 +75,7 @@ const CampaignDashboard = () => {
       enrollmentRate: 3.8,
       enrollmentPotential: 48082,
       engagement: "High",
-      success_rate: "68%",
+      growth: "68%",
       tags: ["Access Barriers", "Telehealth Priority"],
       aiRecommended: false
     },
@@ -283,9 +282,9 @@ const CampaignDashboard = () => {
             
             <TabsContent value="existing">
               <div className="space-y-4 pt-2">
-             <Alert className="bg-blue-50 border-blue-200">
+             <Alert className="bg-orange-50 border-orange-200">
              <div className="flex items-center gap-3">
-              <Sparkles className="w-4 h-4 text-blue-500" />
+              <Sparkles className="w-4 h-4" />
               <AlertDescription className="flex-1">
               Connect your campaign to an active journey to enhance existing member communications
              </AlertDescription>
@@ -332,54 +331,61 @@ const CampaignDashboard = () => {
           </Tabs>
                   </div>
         );
-      case 2:
-        return (
-          <div className="space-y-6">
-            <div className="flex items-center gap-2 mb-4">
-              <Users class Name="w-5 h-5 text-blue-600" />
-              <h2 className="text-lg font-semibold">Select Target Cohorts</h2>
-            </div>
-            <Alert className="bg-blue-50 border-blue-200">
-              <Sparkles className="w-4 h-4 text-blue-500" />
-              <AlertDescription>
-                Based on your selected goal, we've highlighted recommended cohorts
-              </AlertDescription>
-            </Alert>
-            <div className="grid grid-cols-2 gap-4">
-              {cohortOptions.map((cohort) => (
-                <div
-                  key={cohort.id}
-                  className={`relative p-4 border rounded-lg cursor-pointer
-                    ${campaignData.selectedCohorts.includes(cohort.id) ? 'border-blue-500 bg-blue-50' : ''}`}
-                  onClick={() => toggleCohort(cohort.id)}
-                >
-                  {cohort.aiRecommended && (
-                    <Sparkles className="absolute top-2 right-2 w-4 h-4 text-blue-500" />
-                  )}
-                  <div className="mb-2">
-                    <h3 className="font-medium">{cohort.name}</h3>
-                    <p className="text-sm text-gray-600">{cohort.description}</p>
+        case 2:
+          return (
+            <div className="space-y-6">
+              <div className="flex items-center gap-2 mb-4">
+                <Users className="w-5 h-5 text-blue-600" />
+                <h2 className="text-lg font-semibold">Select Target Cohorts</h2>
+              </div>
+              <Alert className="bg-orange-50 border-orange-200">
+                <Sparkles className="w-4 h-4" />
+                <AlertDescription>
+                  Based on your selected goal, we've highlighted recommended cohorts based on their potential enrollment size
+                </AlertDescription>
+              </Alert>
+              <div className="grid grid-cols-2 gap-4">
+                {cohortOptions.map((cohort) => (
+                  <div
+                    key={cohort.id}
+                    className={`relative p-4 border rounded-lg cursor-pointer
+                      ${campaignData.selectedCohorts.includes(cohort.id) ? 'border-blue-500 bg-blue-50' : ''}`}
+                    onClick={() => toggleCohort(cohort.id)}
+                  >
+                    {cohort.aiRecommended && (
+                      <Sparkles className="absolute top-2 right-2 w-4 h-4 text-orange-500" />
+                    )}
+                    <div className="mb-2">
+                      <h3 className="font-medium">{cohort.name}</h3>
+                      <p className="text-sm text-gray-600">{cohort.description}</p>
+                    </div>
+                    <div className="flex gap-20 text-sm">
+                      <span>Size: {cohort.size}</span>
+                      <p className="text-sm text-green-800"> Enrollement potential: +{cohort.enrollmentPotential}</p>
+                    </div>
                   </div>
-                  <div className="flex gap-2 text-sm">
-                    <span>Size: {cohort.size}</span>
-                  </div>
+                ))}
+                <div className="flex w-full"> 
+                  <Button variant="ghost" className="gap-2 ">
+                    <Plus className="w-4 h-4" />
+                    Select More Cohorts
+                  </Button>
                 </div>
-              ))}
+              </div>
             </div>
-          </div>
-        );
+          );
 
       case 3:
         return (
          <div className="space-y-6">
               <div className="flex justify-between items-center">
                 <div className="flex items-center gap-2 mb-4">
-                  <Rss class Name="w-5 h-5 text-blue-600" />
+                  <Rss className="w-5 h-5 text-blue-600" />
                   <h2 className="text-lg font-semibold">Communication Channels</h2>
                   </div>
               </div>
-              <Alert className="bg-blue-50 border-blue-200">
-              <Sparkles className="w-4 h-4 text-blue-500" />
+              <Alert className="bg-orange-50 border-orange-200">
+              <Sparkles className="w-4 h-4 text-orange-500" />
               <AlertDescription>
                 Channel is selected based on your connected journey
               </AlertDescription>
@@ -408,7 +414,7 @@ const CampaignDashboard = () => {
             <div className="max-w-4xl mx-auto space-y-6">
               <div className="flex justify-between items-center">
               <div className="flex items-center gap-2 mb-4">
-                  <MailIcon class Name="w-5 h-5 text-blue-600" />
+                  <MailIcon className="w-5 h-5 text-blue-600" />
                   <h2 className="text-lg font-semibold">Generated Email Options</h2>
                   </div>
                 <div className="space-x-2">

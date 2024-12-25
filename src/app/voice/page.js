@@ -304,7 +304,7 @@ const VoiceAIDashboard = () => {
                         <span className="text-gray-900">{call.duration}</span>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <span className={`font-medium text-orange-300 `}>
+                        <span className={`font-medium text-orange-700 `}>
                           {call.outcome}
                         </span>
                       </td>

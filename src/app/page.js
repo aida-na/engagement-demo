@@ -136,7 +136,6 @@ const campaignData = [
       <CardContent className="p-6">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center space-x-2">
-            <Activity className="w-6 h-6 text-blue-500" />
             <h2 className="text-xl font-semibold">Current Active Campaigns</h2>
           </div>
           <div className="text-sm text-gray-500">
@@ -207,7 +206,6 @@ const campaignData = [
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center space-x-2 mb-4">
-              <Database className="w-6 h-6 text-blue-500" />
               <h2 className="text-xl font-semibold">Data Warehouse Status</h2>
             </div>
             <div className="space-y-3">
@@ -230,7 +228,6 @@ const campaignData = [
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center space-x-2 mb-4">
-              <Cloud className="w-6 h-6 text-blue-500" />
               <h2 className="text-xl font-semibold">SFMC Export Status</h2>
             </div>
             <div className="space-y-3">
