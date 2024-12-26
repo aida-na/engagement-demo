@@ -8,8 +8,11 @@ import { Textarea } from '@/components/ui/textarea';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Plus, Minus, Wand2, Users, Rss, Route, Sparkles, AlertCircle, CheckCircle2, Edit2, ThumbsUp, ThumbsDown, RefreshCw, Mail, MailIcon } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import { useRouter } from 'next/navigation';
+
 
 const CampaignDashboard = () => {
+  const router = useRouter();
   const [step, setStep] = useState(1);
   const [campaignData, setCampaignData] = useState({
     type: 'new',
@@ -252,7 +255,7 @@ const CampaignDashboard = () => {
 
   const handleNext = () => {
     if (step === steps.length) {
-      console.log('Export to Marketing Cloud:', campaignData);
+      router.push('/campaigns'); // Use router.push instead of navigate
     } else {
       setStep(prev => Math.min(prev + 1, steps.length));
     }
@@ -282,7 +285,7 @@ const CampaignDashboard = () => {
             
             <TabsContent value="existing">
               <div className="space-y-4 pt-2">
-             <Alert className="bg-orange-50 border-orange-200">
+             <Alert className="bg-blue-50 border-blue-200">
              <div className="flex items-center gap-3">
               <Sparkles className="w-4 h-4" />
               <AlertDescription className="flex-1">
@@ -301,7 +304,7 @@ const CampaignDashboard = () => {
               <div className="font-medium mb-2">{journey.name}</div>
               <p className="text-sm text-gray-500 mb-2">{journey.description}</p>
               <div className="flex justify-between text-sm">
-                <span className="text-blue-600">Active Members: {journey.activeMembers.toLocaleString()}</span>
+                <span className="text-green-600">Active Members: {journey.activeMembers.toLocaleString()}</span>
                 <span className="text-gray-500">Modified: {new Date(journey.lastModified).toLocaleDateString()}</span>
               </div>
             </div>
@@ -338,7 +341,7 @@ const CampaignDashboard = () => {
                 <Users className="w-5 h-5 text-blue-600" />
                 <h2 className="text-lg font-semibold">Select Target Cohorts</h2>
               </div>
-              <Alert className="bg-orange-50 border-orange-200">
+              <Alert className="bg-blue-50 border-blue-200">
                 <Sparkles className="w-4 h-4" />
                 <AlertDescription>
                   Based on your selected goal, we've highlighted recommended cohorts based on their potential enrollment size
@@ -353,7 +356,7 @@ const CampaignDashboard = () => {
                     onClick={() => toggleCohort(cohort.id)}
                   >
                     {cohort.aiRecommended && (
-                      <Sparkles className="absolute top-2 right-2 w-4 h-4 text-orange-500" />
+                      <Sparkles className="absolute top-2 right-2 w-4 h-4 text-blue-500" />
                     )}
                     <div className="mb-2">
                       <h3 className="font-medium">{cohort.name}</h3>
@@ -384,8 +387,8 @@ const CampaignDashboard = () => {
                   <h2 className="text-lg font-semibold">Communication Channels</h2>
                   </div>
               </div>
-              <Alert className="bg-orange-50 border-orange-200">
-              <Sparkles className="w-4 h-4 text-orange-500" />
+              <Alert className="bg-blue-50 border-blue-200">
+              <Sparkles className="w-4 h-4 text-blue-500" />
               <AlertDescription>
                 Channel is selected based on your connected journey
               </AlertDescription>
@@ -488,20 +491,33 @@ const CampaignDashboard = () => {
   
     return (
       <div className="min-h-screen p-8">
-        <div className="max-w-5xl mx-auto">
+              <div className="max-w-6xl mx-auto p-6 space-y-6">
+                <header className="flex items-center justify-between mb-6">
+                  <div>
+                    <h1 className="text-2xl font-bold">Create Smart Cohort Campaign</h1>
+                  </div>
+                  <Button 
+            variant="outline" 
+            onClick={() => router.push('/campaigns')}
+            className="gap-2"
+          >
+            <Route className="w-4 h-4" />
+            View All Campaigns
+          </Button>
+                </header>
           <div className="mb-8 flex justify-center">
             <div className="flex gap-8">
               {steps.map((s) => (
                 <div
                   key={s.number}
                   className={`flex items-center gap-2 cursor-pointer ${
-                    step >= s.number ? 'text-blue-600' : 'text-gray-400'
+                    step >= s.number ? 'text-gray-600' : 'text-gray-400'
                   }`}
                   onClick={() => setStep(s.number)}
                 >
                   <div 
                     className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                      step >= s.number ? 'bg-blue-600 text-white' : 'bg-gray-200'
+                      step >= s.number ? 'bg-gray-600 text-white' : 'bg-gray-200'
                     }`}
                   >
                     {step > s.number ? <CheckCircle2 className="w-5 h-5" /> : s.number}
@@ -512,11 +528,7 @@ const CampaignDashboard = () => {
             </div>
           </div>
   
-          <Card className="w-full">
-            <CardHeader>
-              <CardTitle>Create Smart Cohort Campaign</CardTitle>
-            </CardHeader>
-            <CardContent>
+          <div className="w-full">
               {renderStepContent()}
               <div className="flex justify-between mt-8">
                 <Button
@@ -533,8 +545,7 @@ const CampaignDashboard = () => {
                   {step === steps.length ? 'Export to Marketing Cloud' : 'Next'}
                 </Button>
               </div>
-            </CardContent>
-          </Card>
+          </div>
         </div>
       </div>
     );

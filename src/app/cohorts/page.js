@@ -55,14 +55,14 @@ const MetricSummaryCard = () => {
           <h3 className="text-sm font-medium text-gray-500">Potential Rate</h3>
           <InfoTooltip content="AI-powered forecast based on analysis of member data and engagement patterns" />
         </div>
-        <p className="text-3xl font-bold text-emerald-800 mt-1">+{metrics.enrollmentPotential}%</p>
+        <p className="text-3xl font-bold text-green-600 mt-1">+{metrics.enrollmentPotential}%</p>
       </Card>
       <Card className="p-4">
         <div className="flex items-center gap-1">
           <h3 className="text-sm font-medium text-gray-500">Potential Enrollment</h3>
           <InfoTooltip content="Projected additional member enrollment based on AI analysis of member characteristics and historical engagement data" />
         </div>
-        <p className="text-3xl font-bold text-emerald-800 mt-1">+{metrics.growthPotential.toLocaleString()}</p>
+        <p className="text-3xl font-bold text-green-600 mt-1">+{metrics.growthPotential.toLocaleString()}</p>
       </Card>
     </div>
   );
@@ -117,7 +117,7 @@ const CohortCard = ({ cohort, onSelect, selected }) => {
                 <div className="text-sm text-gray-500">Potential Enrollment Rate with Personalization</div>
                 <InfoTooltip content="AI-forecasted enrollment rate based on personalized outreach and engagement strategies" />
               </div>
-              <div className="text-2xl font-bold text-emerald-800">
+              <div className="text-2xl font-bold text-green-600">
                 {predictedRate}%
               </div>
             </div>
@@ -126,7 +126,7 @@ const CohortCard = ({ cohort, onSelect, selected }) => {
                 <div className="text-sm text-gray-500">Potential Enrollment</div>
                 <InfoTooltip content="Additional projected enrollments based on AI analysis of member data and personalization strategies" />
               </div>
-              <div className="text-2xl font-bold text-emerald-800">
+              <div className="text-2xl font-bold text-green-600">
                 +{cohort.enrollmentPotential.toLocaleString()}
               </div>
             </div>

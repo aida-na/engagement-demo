@@ -96,7 +96,7 @@ const campaignData = [
             <div className="flex items-center space-x-4">
               <Users className="w-8 h-8 text-blue-500" />
               <div>
-                <p className="text-sm font-medium text-gray-500">Total Eligible Population</p>
+                <p className="text-sm font-medium text-gray-800">Total Eligible Population</p>
                 <h3 className="text-2xl font-bold">{metrics.eligiblePopulation.toLocaleString()}</h3>
               </div>
             </div>
@@ -108,9 +108,9 @@ const campaignData = [
             <div className="flex items-center space-x-4">
               <Activity className="w-8 h-8 text-blue-500" />
               <div>
-                <p className="text-sm font-medium text-gray-500">Total Enrolled</p>
+                <p className="text-sm font-medium text-gray-800">Total Enrolled</p>
                 <h3 className="text-2xl font-bold">{metrics.enrolledPopulation.toLocaleString()}
-                <p className="text-sm font-medium text-orange-500">~5%</p>
+                <p className="text-sm font-medium text-gray-400">~5%</p>
                 </h3>
               </div>
             </div>
@@ -122,9 +122,9 @@ const campaignData = [
             <div className="flex items-center space-x-4">
               <TrendingUp className="w-8 h-8 text-blue-500" />
               <div>
-                <p className="text-sm font-medium text-gray-500">Enrollment Potential</p>
+                <p className="text-sm font-medium text-gray-800">Enrollment Potential</p>
                 <h3 className="text-2xl font-bold">{metrics.enrollmentPotential}%</h3>
-                <p className="text-sm font-sm text-orange-500">AI analysis of the member data to forecast enrollment</p>
+                <p className="text-sm font-sm text-gray-400">AI analysis of the member data to forecast enrollment</p>
               </div>
             </div>
           </CardContent>
