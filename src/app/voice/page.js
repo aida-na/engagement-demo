@@ -16,10 +16,10 @@ const VoiceAIDashboard = () => {
       activeFrom: '2024-02-15',
       callsMade: 15025,
       totalCalls: 18000,
-      avgCallLength: '4:45',
+      avgCallLength: '1:45',
       optInRate: 45,
       handoffRate: 38,
-      answerRate: 62,
+      answerRate: 13,
       lastActive: '3 ago',
       cohorts: ['Unmanaged A1C', 'Lifestyle Change Ready']
     },
@@ -31,10 +31,10 @@ const VoiceAIDashboard = () => {
       activeFrom: '2024-01-20',
       callsMade: 60102,
       totalCalls: 75000,
-      avgCallLength: '5:15',
+      avgCallLength: '1:15',
       optInRate: 67,
       handoffRate: 42,
-      answerRate: 58,
+      answerRate: 15,
       lastActive: '2 hours ago',
       cohorts: ['Digital Engagement', 'Mental Health Comorbidity']
     }
@@ -46,8 +46,8 @@ const VoiceAIDashboard = () => {
       agentName: 'Agent Emma',
       memberID: 'MEM-2024-001',
       timestamp: '2024-03-24 14:30',
-      duration: '4:12',
-      outcome: 'Opted In',
+      duration: '2:12',
+      outcome: 'Voice Mail',
       recording: 'call_1.mp3'
     },
     {
@@ -56,7 +56,7 @@ const VoiceAIDashboard = () => {
       memberID: 'MEM-2024-002',
       timestamp: '2024-03-24 14:15',
       duration: '5:45',
-      outcome: 'Scheduled Follow-up',
+      outcome: 'Follow-up',
       recording: 'call_2.mp3'
     },
     {

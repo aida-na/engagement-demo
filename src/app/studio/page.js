@@ -27,13 +27,13 @@ const CampaignDashboard = () => {
     const [editMode, setEditMode] = useState(false);
   
     const generatedOptions = {
-      '1': {
+      'Old email': {
         subject: "Take Control of Your Health: Important Blood Sugar Update",
         title: "Small Changes Today Can Prevent Diabetes Tomorrow",
         content: "Your recent health screening showed elevated blood glucose levels, and we care about your long-term health. While this doesn't mean you have diabetes, it's an important early warning sign that lets you take action now.\n\nAt [Company Name], we've seen countless members successfully lower their risk of developing type 2 diabetes through our prevention program. Our data shows that simple lifestyle modifications can reduce your diabetes risk by up to 58%. Early intervention is key to preventing the progression to type 2 diabetes.\n\nYour comprehensive benefits include:\n- Free consultation with a certified diabetes educator\n- Personalized nutrition guidance from registered dietitians\n- Access to our digital prevention tools and tracking app\n- Regular support from your dedicated health coach\n\nThe good news? You're catching this early. Our preventive care program is designed to fit your schedule and lifestyle, with both virtual and in-person options available. Many of our members have brought their blood sugar levels back to normal range within just 6 months of starting our program.",
         cta: "Schedule your free prevention consultation today"
       },
-      '2': {
+      'New email': {
         subject: "Important: Your Recent Blood Sugar Results",
         title: "You Have the Power to Prevent Diabetes",
         content: "We recently received your blood glucose test results, and while they're higher than normal, you have an incredible opportunity right now. You can take steps to prevent type 2 diabetes before it develops, and [Company Name] is here to support you every step of the way.\n\nAs your healthcare partner, we're committed to helping you succeed with proven strategies that fit your lifestyle. Our members who participate in our prevention program are 2.5 times more likely to avoid developing diabetes compared to those who don't, and we're ready to help you achieve similar success.\n\nYour comprehensive preventive care benefits cover:\n- One-on-one coaching with diabetes prevention specialists\n- Customized meal planning and exercise guidance\n- Smart device integration for easy progress tracking\n- Virtual group support sessions with others on the same journey\n\nRemember: elevated blood sugar doesn't have to lead to diabetes. With the right support and early action, you can take control of your health destiny. Our team of specialists is ready to create a personalized plan that works for you.",
@@ -415,19 +415,38 @@ const CampaignDashboard = () => {
         case 4:
           return (
             <div className="max-w-4xl mx-auto space-y-6">
-              <div className="flex justify-between items-center">
-              <div className="flex items-center gap-2 mb-4">
+                <div className="flex items-center gap-2 mb-4">
                   <MailIcon className="w-5 h-5 text-blue-600" />
-                  <h2 className="text-lg font-semibold">Generated Email Options</h2>
-                  </div>
-                <div className="space-x-2">
-                  <Button>
-                    <RefreshCw className="h-4 w-4 mr-2" />
-                    Generate More
-                  </Button>
+                  <h2 className="text-lg font-semibold">Personalized Content</h2>
                 </div>
-              </div>
   
+        
+              {/* Stepper Section */}
+              <div className="w-full mb-6">
+                <h3 className="text-sm font-medium text-gray-700 mb-4">Diabetes Program Enrollment 2025 Journey Steps</h3>
+                <div className="max-w-md mx-auto">
+          <div className="relative flex justify-between items-center px-2">
+            {/* Background Progress Bar Container */}
+            <div className="absolute left-4 right-4 top-1/2 -translate-y-1/2">
+              <div className="h-1 w-full bg-gray-200" />
+              <div className="absolute top-0 left-0 h-1 w-1/4 bg-blue-600" />
+            </div>
+            
+            {/* Dots */}
+ {[1, 2, 3, 4].map((step, index) => (
+              <div 
+                key={index} 
+                className={`relative z-10 w-3 h-3 rounded-full border-2 
+                  ${index === 0 
+                    ? 'bg-blue-600 border-blue-600' 
+                    : 'bg-white border-gray-300'}`}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+        
+              {/* Cards Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {Object.entries(generatedOptions).map(([key, option]) => (
                   <Card 
@@ -435,7 +454,7 @@ const CampaignDashboard = () => {
                     className={`relative ${selectedOptionId === key ? 'ring-2 ring-blue-500' : ''}`}
                   >
                     <CardHeader>
-                      <CardTitle className="text-lg">Option {key}</CardTitle>
+                      <CardTitle className="text-lg">{key}</CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-4">
                       <div className="space-y-2">
