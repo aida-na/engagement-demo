@@ -128,7 +128,7 @@ const MedicareAdvantagePreCallSummary = () => {
         description: "Member eligible for free diabetes program with proven results",
         category: "preventive",
         talkingPoints: [
-          "I noticed from your recent health assessment that you may benefit from our diabetes program that helps to prevent the risk",
+          "I noticed from your recent health assessment that you may benefit from our diabetes program",
           "This is a completely free benefit that includes personalized coaching",
           "Many members have successfully prevented diabetes through this program",
           "Would you like to learn more about how it works?"
