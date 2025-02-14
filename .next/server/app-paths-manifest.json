@@ -1,5 +1,7 @@
 {
-  "/page": "app/page.js",
-  "/studio/page": "app/studio/page.js",
-  "/content/page": "app/content/page.js"
+  "/voice-campaigns/page": "app/voice-campaigns/page.js",
+  "/voice/page": "app/voice/page.js",
+  "/cohorts/page": "app/cohorts/page.js",
+  "/summary/page": "app/summary/page.js",
+  "/studio/page": "app/studio/page.js"
 }
