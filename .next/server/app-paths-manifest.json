@@ -1,7 +1,4 @@
 {
-  "/voice-campaigns/page": "app/voice-campaigns/page.js",
-  "/voice/page": "app/voice/page.js",
-  "/cohorts/page": "app/cohorts/page.js",
-  "/summary/page": "app/summary/page.js",
-  "/studio/page": "app/studio/page.js"
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/insights/page": "app/insights/page.js"
 }
