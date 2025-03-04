@@ -77,15 +77,6 @@ const PrediabetesReport = () => {
                   </ul>
                 </div>
                 <div>
-                  <h4 className="font-medium mb-2">Risk Factors:</h4>
-                  <ul className="list-disc pl-5 space-y-1">
-                    <li>BMI ≥ 25</li>
-                    <li>Family history of diabetes</li>
-                    <li>Sedentary lifestyle indicators</li>
-                    <li>History of gestational diabetes</li>
-                  </ul>
-                </div>
-                <div>
                   <h4 className="font-medium mb-2">Demographics:</h4>
                   <ul className="list-disc pl-5 space-y-1">
                     <li>Middle-aged to older individuals with higher prevalence</li>
