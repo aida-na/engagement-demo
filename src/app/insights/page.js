@@ -208,49 +208,7 @@ const PrediabetesReport = () => {
             </Card>
           </div>
 
-          <Card>
-            <CardHeader>
-              <div className="flex items-center gap-2">
-                <BarChart className="h-5 w-5 text-orange-500" />
-                <CardTitle>Member Profiles</CardTitle>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-3">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm font-medium">Mid-life Adults</span>
-                  <div className="w-2/3 h-5 bg-gray-100 rounded-full overflow-hidden">
-                    <div className="bg-orange-500 h-full rounded-full" style={{ width: '45%' }}></div>
-                  </div>
-                  <span className="text-sm font-medium">45%</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm font-medium">Young Adults</span>
-                  <div className="w-2/3 h-5 bg-gray-100 rounded-full overflow-hidden">
-                    <div className="bg-orange-500 h-full rounded-full" style={{ width: '30%' }}></div>
-                  </div>
-                  <span className="text-sm font-medium">30%</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm font-medium">Older Adults</span>
-                  <div className="w-2/3 h-5 bg-gray-100 rounded-full overflow-hidden">
-                    <div className="bg-orange-500 h-full rounded-full" style={{ width: '20%' }}></div>
-                  </div>
-                  <span className="text-sm font-medium">20%</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm font-medium">Students</span>
-                  <div className="w-2/3 h-5 bg-gray-100 rounded-full overflow-hidden">
-                    <div className="bg-orange-500 h-full rounded-full" style={{ width: '5%' }}></div>
-                  </div>
-                  <span className="text-sm font-medium">5%</span>
-                </div>
-              </div>
-              <div className="mt-4 text-sm text-gray-600">
-                <p>Mid-life adults (ages 40-60) represent the largest demographic segment, with unique challenges around work-life balance affecting health management.</p>
-              </div>
-            </CardContent>
-          </Card>
+      
         </div>
       )}
 
@@ -258,38 +216,7 @@ const PrediabetesReport = () => {
       {activeTab === 'engagement' && (
         <div>
           <h2 className="text-2xl font-semibold mb-4">Member Insights & Engagement</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            <Card>
-              <CardHeader>
-                <div className="flex items-center gap-2">
-                  <TrendingUp className="h-5 w-5 text-orange-500" />
-                  <CardTitle>Acquisition Channels</CardTitle>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-3">
-                  <div className="flex justify-between border-b pb-2">
-                    <span className="font-medium">Meta Platforms</span>
-                    <span className="text-orange-500 font-medium">42%</span>
-                  </div>
-                  <div className="flex justify-between border-b pb-2">
-                    <span className="font-medium">TikTok</span>
-                    <span className="text-orange-500 font-medium">28%</span>
-                  </div>
-                  <div className="flex justify-between border-b pb-2">
-                    <span className="font-medium">Google Search</span>
-                    <span className="text-orange-500 font-medium">18%</span>
-                  </div>
-                  <div className="flex justify-between border-b pb-2">
-                    <span className="font-medium">Direct Referrals</span>
-                    <span className="text-orange-500 font-medium">12%</span>
-                  </div>
-                </div>
-                <div className="mt-4 text-sm text-gray-600">
-                  <p>Social media platforms represent 70% of member acquisitions, with Meta providing the highest conversion rates, particularly among adults aged 45-60.</p>
-                </div>
-              </CardContent>
-            </Card>
+          <div className="grid grid-cols-1 md:grid-cols-1 gap-6 mb-8">
 
             <Card>
               <CardHeader>
